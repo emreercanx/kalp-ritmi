@@ -1,0 +1,9 @@
+{
+  "id": "ritim",
+  "name": "Kalp Ritmi",
+  "version": "1.6.0",
+  "minAppVersion": "1.7.2",
+  "description": "Sade, çevrimdışı alışkanlık takipçisi: tam ekran pano, günlük/haftalık/aylık alışkanlıklar, esnek günler ve her N günde tekrar, gün atlama, mola, minimum sürüm, hızlı değer, alışkanlık zincirleme, perfect day, gün bölümleri, haftalık değerlendirme, ısı haritası, hızlı notlar, günlük not, Markdown notu, hızlı yapılacaklar, rapor, Hicri tarih ve isteğe bağlı namaz vakitleri.",
+  "author": "Kalp Ritmi",
+  "isDesktopOnly": false
+}

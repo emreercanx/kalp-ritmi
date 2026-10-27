@@ -1,0 +1,27 @@
+{
+  "name": "ritim",
+  "version": "1.6.0",
+  "description": "Offline habit tracker for Obsidian with daily, weekly, and monthly habits, flexible intervals, skips, pauses, minimum goals, one-tap quick values, habit stacking, perfect days, day parts, weekly reviews, schedules, heatmaps, notes, quick to-dos, reports, prayer times, and insights.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "obsidian-plugin",
+    "habits"
+  ],
+  "author": "Kalp Ritmi",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "esbuild": "^0.21.5",
+    "obsidian": "^1.7.2",
+    "typescript": "^5.4.0",
+    "vitest": "^2.1.9"
+  },
+  "dependencies": {
+    "adhan": "4.4.6"
+  }
+}
