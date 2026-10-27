@@ -1,5 +1,7 @@
 # Kalp Ritmi
 
+A calm, offline habit tracker for Obsidian.
+
 Sade, çevrimdışı bir alışkanlık takipçisi. Obsidian içinde çalışır; hiçbir ağ isteği göndermez, hesap istemez, telemetri toplamaz.
 
 Uygulama adı **Kalp Ritmi** oldu. Eklenti kimliği, görünüm kimliği ve `Ritim/` veri klasörü eski kayıtları korumak için değişmedi; mevcut veriler yerinde kalır.

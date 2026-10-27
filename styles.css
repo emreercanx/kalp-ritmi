@@ -548,8 +548,9 @@
   outline-offset: 2px;
 }
 
-.ritim-hidden {
-  display: none !important;
+.setting-item.ritim-hidden,
+.ritim-hidden.ritim-hidden {
+  display: none;
 }
 
 @container (max-width: 380px) {

@@ -12,7 +12,7 @@
     "obsidian-plugin",
     "habits"
   ],
-  "author": "Kalp Ritmi",
+  "author": "emreercanx",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.11.0",
