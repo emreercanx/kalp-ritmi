@@ -562,10 +562,10 @@ function appendQuickValueButton(
 ): void {
   const button = cell.createEl("button", { cls: "ritim-quick-btn" });
   button.type = "button";
-  button.setText(formatAmount(value));
+  setIcon(button, "plus");
   button.setAttr(
     "aria-label",
-    `${habit.name}, ${date}, hızlı değer ${formatAmount(value)}`,
+    `${habit.name}, ${date}, hızlı değer ${formatAmount(value)} yaz`,
   );
   button.setAttr("title", `Bu güne ${formatAmount(value)} yaz`);
   button.onclick = (event) => {
@@ -715,8 +715,11 @@ function metaText(habit: Habit, cueName?: string): string {
   const daily = isDailySchedule(habit);
   const schedule = daily ? "" : ` · ${scheduleShort(habit)}`;
   if (habit.kind === "numeric") {
+    const quick = habit.quickValue
+      ? ` (${formatAmount(habit.quickValue)})`
+      : "";
     const minimum = habit.minimum ? ` · min ${formatAmount(habit.minimum)}` : "";
-    return `${formatAmount(habit.target ?? 0)} ${habit.unit ?? ""}`.trim() + minimum + schedule + cue + pause;
+    return `${formatAmount(habit.target ?? 0)} ${habit.unit ?? ""}`.trim() + quick + minimum + schedule + cue + pause;
   }
   if (habit.kind === "quit") return "bırak" + schedule + cue + pause;
   return (daily ? "her gün" : scheduleShort(habit)) + cue + pause;

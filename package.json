@@ -1,6 +1,6 @@
 {
   "name": "ritim",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Offline habit tracker for Obsidian with daily, weekly, and monthly habits, flexible intervals, skips, pauses, minimum goals, one-tap quick values, habit stacking, perfect days, day parts, schedules, heatmaps, per-habit notes, quick to-dos, prayer times, and insights.",
   "main": "main.js",
   "scripts": {

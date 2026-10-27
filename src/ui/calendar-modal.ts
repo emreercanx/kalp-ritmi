@@ -75,7 +75,10 @@ export class CalendarModal extends Modal {
       habitInfo.createSpan({ text: this.options.habit.name });
       const detail =
         this.options.habit.kind === "numeric"
-          ? `${this.options.habit.target ?? 0} ${this.options.habit.unit ?? ""}`.trim()
+          ? `${this.options.habit.target ?? 0} ${this.options.habit.unit ?? ""}`.trim() +
+            (this.options.habit.quickValue
+              ? ` (${formatAmount(this.options.habit.quickValue)})`
+              : "")
           : scheduleLabel(this.options.habit);
       habitInfo.createSpan({ text: `· ${detail}`, cls: "ritim-calendar-habit-meta" });
 
@@ -308,11 +311,9 @@ export class CalendarModal extends Modal {
     paint();
 
     if (quickValue) {
-      const quick = wrapper.createEl("button", {
-        cls: "ritim-calendar-quick",
-        text: formatAmount(quickValue),
-      });
+      const quick = wrapper.createEl("button", { cls: "ritim-calendar-quick" });
       quick.type = "button";
+      setIcon(quick, "plus");
       quick.disabled = !editable;
       quick.setAttr(
         "aria-label",
