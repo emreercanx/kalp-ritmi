@@ -10,7 +10,6 @@ interface CalendarModalOptions {
   selected: string;
   weekStart: 0 | 1;
   habit?: Habit;
-  hasNote?: (date: string) => boolean;
   onPick: (date: string) => void;
   onSetValue?: (date: string, value: number) => Promise<void>;
   onChanged?: () => void;
@@ -132,7 +131,6 @@ export class CalendarModal extends Modal {
       if (skipped) button.addClass("is-skipped");
       if (paused) button.addClass("is-paused");
       if (cell.date === this.options.today) button.addClass("is-today");
-      if (this.options.hasNote?.(cell.date)) button.addClass("has-note");
       if (cell.date === this.options.selected) {
         button.addClass("is-selected");
         button.setAttr("aria-pressed", "true");
@@ -191,7 +189,6 @@ export class CalendarModal extends Modal {
     if (!cell.inMonth) day.addClass("is-outside");
     if (!isScheduled(habit, cell.date)) day.addClass("is-off");
     if (cell.date === this.options.today) day.addClass("is-today");
-    if (this.options.hasNote?.(cell.date)) day.addClass("has-note");
     if (cell.date === this.options.selected) {
       day.addClass("is-selected");
       day.setAttr("aria-pressed", "true");
@@ -339,7 +336,6 @@ export class CalendarModal extends Modal {
     if (!cell.inMonth) button.addClass("is-outside");
     if (!isScheduled(habit, cell.date)) button.addClass("is-off");
     if (cell.date === this.options.today) button.addClass("is-today");
-    if (this.options.hasNote?.(cell.date)) button.addClass("has-note");
     if (cell.date === this.options.selected) button.addClass("is-selected");
 
     const paint = (): void => {

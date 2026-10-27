@@ -14,7 +14,6 @@ import type {
 const DATA_FOLDER = "Ritim";
 const LOG_FOLDER = "Ritim/log";
 const HABITS_FILE = "Ritim/habits.json";
-const NOTES_FOLDER = "Ritim/notlar";
 
 interface LogLine {
   h: string;
@@ -48,43 +47,6 @@ export class RitimStore {
     await store.loadDefinitions();
     await store.loadLogs();
     return store;
-  }
-
-  async readNote(date: string): Promise<string> {
-    this.assertDate(date);
-    const file = this.app.vault.getAbstractFileByPath(normalizePath(this.notePath(date)));
-    if (!file) return "";
-    if (!(file instanceof TFile)) throw new Error(`${this.notePath(date)} bir dosya değil.`);
-    return this.app.vault.read(file);
-  }
-
-  hasNote(date: string): boolean {
-    this.assertDate(date);
-    const file = this.app.vault.getAbstractFileByPath(normalizePath(this.notePath(date)));
-    return file instanceof TFile;
-  }
-
-  async writeNote(date: string, text: string): Promise<void> {
-    this.assertDate(date);
-    const value = text.trim();
-    const path = normalizePath(this.notePath(date));
-
-    await this.enqueue(async () => {
-      const existing = this.app.vault.getAbstractFileByPath(path);
-      if (!value) {
-        if (existing instanceof TFile) await this.app.vault.delete(existing);
-        return;
-      }
-
-      await this.ensureFolder(NOTES_FOLDER);
-      if (existing instanceof TFile) {
-        await this.app.vault.process(existing, () => value + "\n");
-      } else if (existing) {
-        throw new Error(`${path} bir dosya değil.`);
-      } else {
-        await this.app.vault.create(path, value + "\n");
-      }
-    });
   }
 
   async setValue(habit: Habit, date: string, value: number): Promise<void> {
@@ -232,10 +194,6 @@ export class RitimStore {
       this.habits.splice(index, 0, habit);
       throw error;
     }
-  }
-
-  private notePath(date: string): string {
-    return `${NOTES_FOLDER}/${date}.md`;
   }
 
   private assertDate(date: string): void {

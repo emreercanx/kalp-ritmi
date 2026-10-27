@@ -1,9 +1,9 @@
 {
   "id": "ritim",
   "name": "Kalp Ritmi",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "minAppVersion": "1.7.2",
-  "description": "Track daily, weekly, and monthly habits with flexible schedules, streaks, heatmaps, notes, and reports, entirely offline.",
+  "description": "Track daily, weekly, and monthly habits with flexible schedules, streaks, heatmaps, notes, and quick to-dos, entirely offline.",
   "author": "emreercanx",
   "isDesktopOnly": false,
   "authorUrl": "https://github.com/emreercanx"

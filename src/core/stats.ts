@@ -157,7 +157,7 @@ export function bestStreak(habit: Habit): number {
   return best;
 }
 
-/** The start of a reporting range, but never before the habit existed.
+/** The start of a stats range, but never before the habit existed.
  *  Backfilled entries (logged on a date earlier than createdAt) are respected. */
 export function effectiveStart(habit: Habit, from: string): string {
   const earliest = earliestLogDate(habit);

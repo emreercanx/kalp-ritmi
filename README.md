@@ -6,9 +6,9 @@ Sade, çevrimdışı bir alışkanlık takipçisi. Obsidian içinde çalışır;
 
 Uygulama adı **Kalp Ritmi** oldu. Eklenti kimliği, görünüm kimliği ve `Ritim/` veri klasörü eski kayıtları korumak için değişmedi; mevcut veriler yerinde kalır.
 
-**1.6.0**, esnek tekrar, gün atlama ve mola, minimum sürüm, tek dokunuşlu hızlı değer, alışkanlık zincirleme, perfect day, gün bölümleri ve haftalık değerlendirme ekler. Esnek tekrar her N günde bir çalışır; atlanan ve moladaki günler seriyi bozmaz. Haftalık değerlendirme `Ritim/değerlendirmeler/` altına Markdown olarak yazılır. 127 çekirdek testi geçer.
+**1.6.1**, günlük not, Markdown raporu ve haftalık değerlendirme düğmelerini kaldırır. Esnek tekrar, gün atlama ve mola, minimum sürüm, tek dokunuşlu hızlı değer, alışkanlık zincirleme, perfect day ve gün bölümleri korunur. 121 çekirdek testi geçer.
 
-> Durum: **1.6.0.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, gün atlama, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, haftalık değerlendirme, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, günlük not ve not işaretleri, alışkanlık başına Markdown notu, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, Markdown raporu, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
+> Durum: **1.6.1.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, gün atlama, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
 
 ## Kurulum (GitHub sürümü)
 
@@ -58,15 +58,12 @@ npm run build
 - Düzenleme ekranındaki **Şundan sonra** ile bir alışkanlığı başka bir alışkanlığın ardına bağla. Zincir, panoda üst alışkanlıktan sonra gösterilir ve döngü oluşturacak bağlantılar engellenir.
 - **Gün bölümü** ile alışkanlığı Sabah, Öğleden sonra, Akşam veya Gün içinde grubuna koy. Birden fazla grup varsa günlük pano bu başlıklarla ayrılır.
 - Başlıkta **Perfect day** ilerlemesi görünür: o gün beklenen tüm günlük alışkanlıklar tamamlanınca vurgulanır. Atlanan ve moladaki günler beklenen sayıya katılmaz.
-- Başlıktaki **değerlendirme** düğmesi veya komut paletindeki **Kalp Ritmi: Haftalık değerlendirme oluştur** ile haftanın özetini `Ritim/değerlendirmeler/YYYY-MM-DD.md` dosyasına yaz. Dosyada tamamlama, perfect day, atlanan/moladaki günler, alışkanlık tablosu, dönemlik alışkanlıklar, öne çıkanlar ve değerlendirme soruları bulunur; aynı gün tekrar çalıştırınca güncellenir.
 - Düzenleme ekranındaki **Sıra** düğmeleriyle alışkanlığın panodaki yerini değiştir; sıra hemen kaydedilir.
 - **Arşivle** ile alışkanlığı panodan kaldır; geçmişi silinmez. Ayarlar > Arşiv bölümünden geri alabilirsin. Arşivdeki bir namaz alışkanlığına vakit şeridinden dokunursan otomatik geri alınır.
 - Başlıktaki **şimşek** simgesi hızlı yapılacaklar penceresini açar. Yazdığın görev `- [ ] görev` olarak tek bir Markdown dosyasına eklenir; **Dosyayı aç** ile aynı dosyayı yeni sekmede açabilirsin. Varsayılan dosya `Ritim/Hızlı yapılacaklar.md`; **Ayarlar > Hızlı yapılacaklar > Todo dosyası** ile değiştirilebilir. Telefon widget'ından not açıp bu dosyayı seçerek listeye hızlıca ulaşabilirsin.
 - Haftalık/aylık satırdaki **takvim** düğmesi dönem takvimini açar. Haftalıkta seçili ayın haftaları, aylıkta seçili yılın 12 ayı listelenir; dolu kutular hedefe ulaşılan dönemleri, çerçeveli kutular seçili dönemi gösterir. Üstteki dört kutuda bu dönemin değeri, tamamlanan dönem sayısı ve güncel/en uzun seri bulunur. Geçmiş bir döneme dokununca pano o döneme gider; gelecek dönemler kapalıdır.
 - Haftalık/aylık alışkanlığın **ayrıntı** düğmesi dönem değerini, tamamlanan dönem sayısını, güncel/en uzun seriyi ve son 12 dönemi gösterir; altındaki **Takvim** düğmesi dönem takvimini açar.
-- Başlıktaki **not** simgesiyle seçili günün notunu yaz; not `Ritim/notlar/YYYY-MM-DD.md` olarak saklanır. Boş kaydetmek notu siler. Notu olan günler panoda ve takvimde küçük bir noktayla işaretlenir; not simgesi seçili günde not varsa vurgulanır.
 - 8–14 günlük panoda sütunlar sıkışmaz; pano yatay kaydırılır ve alışkanlık adı sabit kalır. Arşivli alışkanlıklar sıralamada atlanır; haftalık gün hedefi seçili gün sayısından fazla olamaz.
-- Başlıktaki rapor simgesi veya komut paletindeki **Kalp Ritmi: Markdown raporu oluştur** ile günün özetini `Ritim/Kalp Ritmi raporu YYYY-MM-DD.md` dosyasına yaz. Rapor günlük alışkanlıkları ayrı, haftalık/aylık alışkanlıkları ayrı tabloda gösterir. Aynı gün tekrar çalıştırınca rapor güncellenir; günün notu da rapora eklenir.
 - `‹` / `›` ile seçili gün sayısı kadar geçmişe git; eski günlere dokunup düzelt.
 - Başlıktaki takvim simgesiyle aya bak, bir güne dokun ve o tarihe atla; seçilen gün çerçeveli görünür.
 - Her günlük alışkanlığın altındaki takvim simgesi o alışkanlığın ayını açar. Dolu günler hedefe ulaşılan, çerçeveli günler kısmi kayıtları gösterir; sayısal alışkanlıklarda günlük değer de yazar.
@@ -82,8 +79,6 @@ npm run build
 
 - `Ritim/habits.json` — alışkanlık tanımları
 - `Ritim/log/YYYY-MM.ndjson` — her düzenleme için bir satır; en yeni zaman damgası kazanır. Haftalık/aylık kayıtlar dönem başlangıcı anahtarıyla aynı dosyalarda tutulur. Atlanan günler `s` alanlı satırla, molalar ise `habits.json` içindeki tarih aralığıyla saklanır.
-- `Ritim/notlar/YYYY-MM-DD.md` — isteğe bağlı günlük not; klasör yalnızca ilk not kaydedildiğinde oluşur
-- `Ritim/değerlendirmeler/YYYY-MM-DD.md` — haftalık değerlendirme; klasör ilk değerlendirmede oluşur
 - `Ritim/alışkanlıklar/<ad>.md` — alışkanlık başına Markdown notu; klasör ayarlardan değiştirilebilir
 - `Ritim/Hızlı yapılacaklar.md` — şimşek düğmesinin eklediği görevler; dosya yolu ayarlardan değiştirilebilir
 
@@ -100,4 +95,4 @@ Kayıtlar düz metindir, kasanın normal yedeğiyle birlikte taşınır. İlk a�
 
 ## Lisans
 
-MIT. Bundled third-party notices: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+MIT. Namaz vakti hesaplamasında kullanılan [adhan-js](https://github.com/batoulapps/adhan-js) MIT lisanslıdır; ayrıntılar: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

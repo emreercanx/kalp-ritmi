@@ -3,7 +3,6 @@ import {
   Notice,
   Plugin,
   TFile,
-  TFolder,
   WorkspaceLeaf,
   normalizePath,
 } from "obsidian";
@@ -24,8 +23,6 @@ import {
 } from "./core/period";
 import { findPrayerHabit, PRAYER_HABITS } from "./core/prayer-habits";
 import { appendQuickTodo, ensureQuickTodoFile } from "./core/quick-todo";
-import { buildMarkdownReport } from "./core/report";
-import { buildWeeklyReview } from "./core/review";
 import {
   DEFAULT_SETTINGS,
   normalizeQuickTodoPath,
@@ -39,7 +36,6 @@ import { HabitDetailModal } from "./ui/habit-detail-modal";
 import { ConfirmDeleteModal, HabitModal } from "./ui/habit-modal";
 import { HabitQuickNoteModal } from "./ui/habit-quick-note-modal";
 import { renderHabitList } from "./ui/list";
-import { NoteModal } from "./ui/note-modal";
 import { PeriodCalendarModal } from "./ui/period-calendar-modal";
 import { PeriodDetailModal } from "./ui/period-detail-modal";
 import { QuickTodoModal } from "./ui/quick-todo-modal";
@@ -190,17 +186,13 @@ class RitimView extends ItemView {
       onPeriodDetail: (habit) => this.openPeriodDetail(habit),
       onDelete: (habit) => this.openDeleteHabit(habit),
       onSkip: (habit, date, skipped) => this.toggleSkip(habit, date, skipped),
-      onReview: () => void this.plugin.exportWeeklyReview(),
       onQuickNote: (habit) => this.openQuickNote(habit),
       onHabitDoc: (habit) => void this.openHabitDoc(habit),
       onPeriodNavigate: (cadence, delta) => this.navigatePeriod(cadence, delta),
       onPeriodToday: (cadence) => this.resetPeriod(cadence),
       onCalendar: () => this.openCalendar(),
       onSettings: () => this.openSettings(),
-      onNote: () => void this.openNote(),
-      onReport: () => void this.plugin.exportReport(),
       onQuickTodo: () => this.openQuickTodo(),
-      hasNote: (date) => this.store?.hasNote(date) ?? false,
       hasArchived: this.store.habits.some((habit) => habit.archived),
       onError: (error) => {
         const message = error instanceof Error ? error.message : String(error);
@@ -287,27 +279,6 @@ class RitimView extends ItemView {
     this.render();
   }
 
-  private async openNote(): Promise<void> {
-    const store = this.store;
-    if (!store) return;
-    const date = this.focusDate;
-
-    try {
-      const value = await store.readNote(date);
-      new NoteModal(this.app, {
-        date,
-        value,
-        onSave: async (text) => {
-          await store.writeNote(date, text);
-          this.render();
-        },
-      }).open();
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      new Notice(`Kalp Ritmi: not açılamadı. ${message}`, 10000);
-    }
-  }
-
   private async toggleSkip(
     habit: Habit,
     date: string,
@@ -345,7 +316,6 @@ class RitimView extends ItemView {
       today: this.today,
       selected: this.focusDate,
       weekStart: this.plugin.settings.weekStart,
-      hasNote: (date) => this.store?.hasNote(date) ?? false,
       onPick: (date) => this.jumpToDate(date),
     }).open();
   }
@@ -478,7 +448,6 @@ class RitimView extends ItemView {
         selected: this.focusDate,
         weekStart: this.plugin.settings.weekStart,
         habit,
-        hasNote: (date) => this.store?.hasNote(date) ?? false,
         onPick: (date) => this.jumpToDate(date),
         onSetValue: (date, value) => {
           const store = this.store;
@@ -646,22 +615,6 @@ export default class RitimPlugin extends Plugin {
         void this.openInNewTab();
       },
     });
-
-    this.addCommand({
-      id: "export-report",
-      name: "Markdown raporu oluştur",
-      callback: () => {
-        void this.exportReport();
-      },
-    });
-
-    this.addCommand({
-      id: "weekly-review",
-      name: "Haftalık değerlendirme oluştur",
-      callback: () => {
-        void this.exportWeeklyReview();
-      },
-    });
   }
 
   onunload(): void {
@@ -697,75 +650,6 @@ export default class RitimPlugin extends Plugin {
     } catch (error) {
       this.notes = previous;
       throw error;
-    }
-  }
-
-  async exportReport(): Promise<void> {
-    try {
-      const today = todayLocal(this.settings.cutoffHour);
-      const store = await RitimStore.open(this.app, today);
-      const note = await store.readNote(today).catch(() => "");
-      const markdown = buildMarkdownReport(store.habits, {
-        today,
-        weekStart: this.settings.weekStart,
-        hijri: this.settings.hijriEnabled
-          ? formatHijri(today, this.settings.hijriOffset)
-          : undefined,
-        note,
-      });
-
-      const path = normalizePath(`Ritim/Kalp Ritmi raporu ${today}.md`);
-      const existing = this.app.vault.getAbstractFileByPath(path);
-      if (existing instanceof TFile) {
-        await this.app.vault.process(existing, () => markdown);
-      } else if (existing) {
-        throw new Error(`${path} bir dosya değil.`);
-      } else {
-        await this.app.vault.create(path, markdown);
-      }
-
-      new Notice(`Kalp Ritmi raporu oluşturuldu: ${path}`, 8000);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      new Notice(`Kalp Ritmi: rapor oluşturulamadı. ${message}`, 10000);
-    }
-  }
-
-  async exportWeeklyReview(): Promise<void> {
-    try {
-      const today = todayLocal(this.settings.cutoffHour);
-      const store = await RitimStore.open(this.app, today);
-      const note = await store.readNote(today).catch(() => "");
-      const markdown = buildWeeklyReview(store.habits, {
-        today,
-        weekStart: this.settings.weekStart,
-        hijri: this.settings.hijriEnabled
-          ? formatHijri(today, this.settings.hijriOffset)
-          : undefined,
-        note,
-      });
-
-      const folderPath = normalizePath("Ritim/değerlendirmeler");
-      const folder = this.app.vault.getAbstractFileByPath(folderPath);
-      if (!(folder instanceof TFolder)) {
-        if (folder) throw new Error(`${folderPath} bir klasör değil.`);
-        await this.app.vault.createFolder(folderPath);
-      }
-
-      const path = normalizePath(`Ritim/değerlendirmeler/${today}.md`);
-      const existing = this.app.vault.getAbstractFileByPath(path);
-      if (existing instanceof TFile) {
-        await this.app.vault.process(existing, () => markdown);
-      } else if (existing) {
-        throw new Error(`${path} bir dosya değil.`);
-      } else {
-        await this.app.vault.create(path, markdown);
-      }
-
-      new Notice(`Kalp Ritmi haftalık değerlendirmesi oluşturuldu: ${path}`, 8000);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      new Notice(`Kalp Ritmi: haftalık değerlendirme oluşturulamadı. ${message}`, 10000);
     }
   }
 

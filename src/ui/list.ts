@@ -59,15 +59,11 @@ export interface HabitListOptions {
   onPeriodDetail?: (habit: Habit) => void;
   onDelete?: (habit: Habit) => void;
   onSkip?: (habit: Habit, date: string, skipped: boolean) => Promise<void>;
-  onReview?: () => void;
   onQuickNote?: (habit: Habit) => void;
   onHabitDoc?: (habit: Habit) => void;
   onCalendar: () => void;
   onSettings: () => void;
-  onNote?: () => void;
-  onReport?: () => void;
   onQuickTodo?: () => void;
-  hasNote?: (date: string) => boolean;
   hasArchived?: boolean;
   onError?: (error: unknown) => void;
   prayer?: {
@@ -168,35 +164,6 @@ function renderHeader(
   const actions = header.createDiv({ cls: "ritim-header-actions" });
   actions.createSpan({ text: "kayıtlı", cls: "ritim-badge" });
 
-  if (options.onNote) {
-    const note = actions.createEl("button", { cls: "ritim-add-btn" });
-    note.type = "button";
-    const noteExists = options.hasNote?.(options.focusDate) ?? false;
-    note.setAttr("aria-label", "Günün notunu aç");
-    note.setAttr("title", noteExists ? "Günün notu (kayıtlı)" : "Günün notu");
-    note.toggleClass("is-active", noteExists);
-    setIcon(note, "sticky-note");
-    note.onclick = () => options.onNote?.();
-  }
-
-  if (options.onReview) {
-    const review = actions.createEl("button", { cls: "ritim-add-btn" });
-    review.type = "button";
-    review.setAttr("aria-label", "Haftalık değerlendirme oluştur");
-    review.setAttr("title", "Haftalık değerlendirme");
-    setIcon(review, "clipboard-check");
-    review.onclick = () => options.onReview?.();
-  }
-
-  if (options.onReport) {
-    const report = actions.createEl("button", { cls: "ritim-add-btn" });
-    report.type = "button";
-    report.setAttr("aria-label", "Markdown raporu oluştur");
-    report.setAttr("title", "Markdown raporu");
-    setIcon(report, "file-text");
-    report.onclick = () => options.onReport?.();
-  }
-
   if (options.onQuickTodo) {
     const quickTodo = actions.createEl("button", { cls: "ritim-add-btn" });
     quickTodo.type = "button";
@@ -280,7 +247,7 @@ function renderDailySection(
     const table = section.createDiv({
       cls: "ritim-list" + (options.days > 7 ? " is-dense" : ""),
     });
-    renderHeadRow(table, dates, options.today, options.focusDate, options.hasNote);
+    renderHeadRow(table, dates, options.today, options.focusDate);
     renderEmpty(table, {
       text: options.hasArchived
         ? "Panoda etkin günlük alışkanlık yok."
@@ -301,7 +268,7 @@ function renderDailySection(
     const table = section.createDiv({
       cls: "ritim-list" + (options.days > 7 ? " is-dense" : ""),
     });
-    renderHeadRow(table, dates, options.today, options.focusDate, options.hasNote);
+    renderHeadRow(table, dates, options.today, options.focusDate);
     for (const habit of group.habits) {
       renderHabitRow(
         table,
@@ -458,7 +425,6 @@ function renderHeadRow(
   dates: string[],
   today: string,
   focusDate: string,
-  hasNote?: (date: string) => boolean,
 ): void {
   const row = table.createDiv({ cls: "ritim-row ritim-row-head" });
   applyColumns(row, dates.length);
@@ -468,7 +434,6 @@ function renderHeadRow(
     const classes = ["ritim-day-head"];
     if (date === today) classes.push("is-today");
     if (date === focusDate && date !== today) classes.push("is-picked");
-    if (hasNote?.(date)) classes.push("has-note");
     const cell = row.createDiv({ cls: classes.join(" ") });
     cell.createSpan({ text: weekdayShort(date), cls: "ritim-weekday" });
     cell.createSpan({ text: dayNum(date), cls: "ritim-daynum" });

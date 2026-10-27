@@ -111,7 +111,7 @@ export class SettingsModal extends Modal {
     new Setting(contentEl)
       .setName("Hafta başlangıcı")
       .setDesc(
-        "Haftalık pano ve rapor bu günden başlar. " +
+        "Haftalık pano bu günden başlar. " +
           "Haftalık kayıt girdikten sonra değiştirmek eski haftaların hizasını kaydırabilir.",
       )
       .addDropdown((dropdown) => {

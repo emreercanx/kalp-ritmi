@@ -1542,46 +1542,6 @@
   border-color: var(--interactive-accent);
 }
 
-.ritim-note-hint {
-  margin-top: 4px;
-}
-
-.ritim-day-head.has-note {
-  position: relative;
-}
-
-.ritim-day-head.has-note::after {
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--text-normal);
-  content: "";
-}
-
-.ritim-calendar-day.has-note {
-  position: relative;
-}
-
-.ritim-calendar-day.has-note::after {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--text-normal);
-  box-shadow: 0 0 0 1px var(--background-primary);
-  content: "";
-}
-
-.ritim-add-btn.is-active {
-  border-color: var(--interactive-accent);
-  color: var(--interactive-accent);
-}
-
 .ritim-list.is-dense .ritim-row {
   --ritim-col: 28px;
 }

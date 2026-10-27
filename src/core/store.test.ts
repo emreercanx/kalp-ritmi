@@ -292,26 +292,6 @@ describe("RitimStore", () => {
     expect(habit.archived).toBeUndefined();
   });
 
-  it("stores daily notes as markdown and deletes them when emptied", async () => {
-    const app = appWith(vault);
-    const store = await RitimStore.open(app);
-
-    expect(vault.folders.has("Ritim/notlar")).toBe(false);
-    expect(store.hasNote("2026-10-26")).toBe(false);
-    await store.writeNote("2026-10-26", "Bugün su hedefini tamamladım.");
-    expect(vault.folders.has("Ritim/notlar")).toBe(true);
-    expect(store.hasNote("2026-10-26")).toBe(true);
-    expect(await store.readNote("2026-10-26")).toBe("Bugün su hedefini tamamladım.\n");
-
-    const reopened = await RitimStore.open(app);
-    expect(await reopened.readNote("2026-10-26")).toBe("Bugün su hedefini tamamladım.\n");
-
-    await reopened.writeNote("2026-10-26", "   ");
-    expect(vault.files.has("Ritim/notlar/2026-10-26.md")).toBe(false);
-    expect(await reopened.readNote("2026-10-26")).toBe("");
-    expect(reopened.hasNote("2026-10-26")).toBe(false);
-  });
-
   it("refuses duplicate habit ids", async () => {
     const app = appWith(vault);
     const store = await RitimStore.open(app);
