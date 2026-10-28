@@ -6,9 +6,9 @@ Sade, çevrimdışı bir alışkanlık takipçisi. Obsidian içinde çalışır;
 
 Uygulama adı **Kalp Ritmi** oldu. Eklenti kimliği, görünüm kimliği ve `Ritim/` veri klasörü eski kayıtları korumak için değişmedi; mevcut veriler yerinde kalır.
 
-**1.6.4**, "Açılışta panoyu aç" ayarının gecikmeli yüklenen eklentilerle (ör. Lazy Plugins) de çalışmasını sağlar: Obsidian açıldığında Kalp Ritmi panosu öne gelir. Varsayılan olarak kapalıdır; 122 çekirdek testi geçer.
+**1.6.5**, alışkanlık satırlarındaki gün atlama düğmesini kaldırır. Daha önce atlanmış günler `–` olarak görünmeye ve dokunarak geri alınmaya devam eder. "Açılışta panoyu aç" ayarı gecikmeli yüklenen eklentilerle (ör. Lazy Plugins) de çalışır; 122 çekirdek testi geçer.
 
-> Durum: **1.6.4.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, gün atlama, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
+> Durum: **1.6.5.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
 
 ## Kurulum (GitHub sürümü)
 
@@ -54,7 +54,7 @@ npm run build
 - Alışkanlık satırındaki **ayrıntı** ekranı; 30 gün dağılımını, aylık eğilimi, haftanın günlerine göre başarıyı, son kayıtları ve plan bilgilerini gösterir.
 - Sayısal alışkanlıkta **Hızlı değer** belirle: örneğin 111. Panoda ve alışkanlık takviminde her gün hücresinin altında çıkan renkli **+** düğmesi o güne varsayılan hızlı değeri tek dokunuşla yazar; varsayılan değer alışkanlık adının altında `(111)` gibi küçük bir bilgi olarak görünür. Geçmiş günlere dönüp planlama yaparken de kullanılabilir. Alışkanlık takviminde gün kutusuna dokunarak tik alışkanlığını işaretleyip kaldırabilir, sayısal alışkanlıkta istediğin rakamı girebilirsin. Satır eylem düğmeleri büyütüldü. Tik ve bırak alışkanlıklarında bu düğme görünmez.
 - Düzenleme ekranındaki **Mola** başlangıç ve bitiş tarihleriyle bir aralık seç. Moladaki günler beklenen gün sayılmaz ve seriyi bozmaz; panoda soluk, takvimde “molada” görünür.
-- Günlük satırdaki **atla** düğmesi seçili günü atlar; atlanan gün beklenen gün sayılmaz, seriyi bozmaz ve panoda `–` ile gösterilir. Atlanan hücreye dokunarak kaydı geri alabilirsin.
+- Daha önce atlanmış günler panoda `–` ile gösterilir; atlanan hücreye dokunarak kaydı geri alabilirsin. Yeni gün atlama düğmesi 1.6.5 ile kaldırıldı.
 - Düzenleme ekranındaki **Şundan sonra** ile bir alışkanlığı başka bir alışkanlığın ardına bağla. Zincir, panoda üst alışkanlıktan sonra gösterilir ve döngü oluşturacak bağlantılar engellenir.
 - **Gün bölümü** ile alışkanlığı Sabah, Öğleden sonra, Akşam veya Gün içinde grubuna koy. Birden fazla grup varsa günlük pano bu başlıklarla ayrılır.
 - Başlıkta **Perfect day** ilerlemesi görünür: o gün beklenen tüm günlük alışkanlıklar tamamlanınca vurgulanır. Atlanan ve moladaki günler beklenen sayıya katılmaz.

@@ -667,19 +667,6 @@ function renderRowActions(
       options.onHabitDoc?.(habit),
     );
   }
-  if (daily && options.onSkip) {
-    const skipped = isSkipped(habit, options.focusDate);
-    action(
-      "circle-slash",
-      skipped ? "atlamayı geri al" : "seçili günü atla",
-      skipped ? "Atlamayı geri al" : "Seçili günü atla",
-      () => {
-        void options
-          .onSkip?.(habit, options.focusDate, !skipped)
-          .catch((error: unknown) => options.onError?.(error));
-      },
-    );
-  }
   if (daily && options.onQuickNote) {
     action("notebook-pen", "hızlı notlarını aç", "Hızlı notlar", () =>
       options.onQuickNote?.(habit),
