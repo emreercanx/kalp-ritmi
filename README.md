@@ -6,9 +6,9 @@ Sade, çevrimdışı bir alışkanlık takipçisi. Obsidian içinde çalışır;
 
 Uygulama adı **Kalp Ritmi** oldu. Eklenti kimliği, görünüm kimliği ve `Ritim/` veri klasörü eski kayıtları korumak için değişmedi; mevcut veriler yerinde kalır.
 
-**1.6.2**, hızlı değer düğmesini sadeleştirir: her günün altında renkli bir `+` düğmesi kalır, varsayılan değer alışkanlık altında `(111)` gibi küçük bir bilgi olarak gösterilir. Günlük not, Markdown raporu ve haftalık değerlendirme kaldırılmıştır. 121 çekirdek testi geçer.
+**1.6.3**, isteğe bağlı "Açılışta panoyu aç" ayarını ekler: Obsidian açıldığında Kalp Ritmi panosu öne gelir. Varsayılan olarak kapalıdır; 122 çekirdek testi geçer.
 
-> Durum: **1.6.2.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, gün atlama, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
+> Durum: **1.6.3.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, gün atlama, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
 
 ## Kurulum (GitHub sürümü)
 
@@ -34,7 +34,7 @@ npm run build
 
 ## Kullanım
 
-- Kalp Ritmi ana çalışma alanında tam genişlikte açılır. Açılırken sol ve sağ yan paneller kapanır; eski sürümden yan panelde kalmış bir Kalp Ritmi görünümü ilk açılışta kaldırılır. **Panoyu yeni sekmede aç** komutu ayrı bir ana sekme oluşturur.
+- Kalp Ritmi ana çalışma alanında tam genişlikte açılır. Açılırken sol ve sağ yan paneller kapanır; eski sürümden yan panelde kalmış bir Kalp Ritmi görünümü ilk açılışta kaldırılır. **Panoyu yeni sekmede aç** komutu ayrı bir ana sekme oluşturur. Ayarlardaki **Açılışta panoyu aç** ile Obsidian her açıldığında pano öne gelir; Obsidian'ın varsayılan açılış dosyası arkada açık kalır.
 - Başlıktaki `+` günlük alışkanlık ekler. **Haftalık alışkanlıklar** ve **Aylık alışkanlıklar** bölüm başlığındaki `+` ise o sıklıkta yeni alışkanlık ekler.
 - Bir alışkanlığın adına veya satırındaki kalem simgesine dokunarak düzenle.
 - Düzenleme ekranındaki **Sıklık** ile Günlük, Haftalık veya Aylık seç. Haftalık her hafta tek, aylık her ay tek kutuda işaretlenir; sayısal alışkanlıkta **hedef** dönem hedefi olur. Kayıtları olan bir alışkanlığın sıklığı değiştirilemez.
@@ -67,7 +67,7 @@ npm run build
 - `‹` / `›` ile seçili gün sayısı kadar geçmişe git; eski günlere dokunup düzelt.
 - Başlıktaki takvim simgesiyle aya bak, bir güne dokun ve o tarihe atla; seçilen gün çerçeveli görünür.
 - Her günlük alışkanlığın altındaki takvim simgesi o alışkanlığın ayını açar. Dolu günler hedefe ulaşılan, çerçeveli günler kısmi kayıtları gösterir; sayısal alışkanlıklarda günlük değer de yazar.
-- Başlıktaki dişli ile görünen gün sayısını (3–14), görünen hafta (2–8) ve ay (3–12) sayısını, hafta başlangıcını (Pazartesi/Pazar), gün dönümünü (00:00–05:00), alışkanlık MD klasörünü, hızlı yapılacaklar dosyasını, Hicri tarihi ve isteğe bağlı namaz vakitlerini ayarla.
+- Başlıktaki dişli ile görünen gün sayısını (3–14), görünen hafta (2–8) ve ay (3–12) sayısını, hafta başlangıcını (Pazartesi/Pazar), gün dönümünü (00:00–05:00), **açılışta panoyu aç** seçeneğini, alışkanlık MD klasörünü, hızlı yapılacaklar dosyasını, Hicri tarihi ve isteğe bağlı namaz vakitlerini ayarla.
 - Başlıkta Ümmü'l-Kura takvimine göre Hicri tarih görünür. Diyanet takvimiyle bir günlük fark olursa ayarlardan −2…+2 gün kaydırma yapılabilir.
 - Namaz vakitleri için şehir seç veya "Özel konum" ile enlem/boylam gir; yöntem (varsayılan Diyanet) ve ikindi mezhebi (varsayılan Hanefi) seçilebilir. Vakitler panonun üstünde gösterilir; sıradaki vakit ve kalan süre işaretlenir.
 - Vakit şeridindeki bir namaza dokunarak o günü işaretle veya işareti geri al. İlgili namaz alışkanlığı yoksa ilk dokunuşta oluşturulur; mevcut "Sabah namazı" alışkanlığı yeniden kullanılır.

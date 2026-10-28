@@ -19,6 +19,8 @@ export interface RitimSettings {
   habitDocFolder: string;
   /** Markdown file used by the quick to-do button and note widget. */
   quickTodoPath: string;
+  /** Bring the board forward when Obsidian launches. */
+  openBoardOnStartup: boolean;
   /** Show the Umm al-Qura date under the board title. */
   hijriEnabled: boolean;
   /** Day shift for matching a local Hijri calendar, from -2 to +2. */
@@ -40,6 +42,7 @@ export const DEFAULT_SETTINGS: RitimSettings = {
   cutoffHour: 0,
   habitDocFolder: "Ritim/alışkanlıklar",
   quickTodoPath: "Ritim/Hızlı yapılacaklar.md",
+  openBoardOnStartup: false,
   hijriEnabled: true,
   hijriOffset: 0,
   prayerEnabled: false,
@@ -132,6 +135,7 @@ export function normalizeSettings(raw: unknown): RitimSettings {
     cutoffHour,
     habitDocFolder: normalizeHabitDocFolder(value.habitDocFolder),
     quickTodoPath: normalizeQuickTodoPath(value.quickTodoPath),
+    openBoardOnStartup: value.openBoardOnStartup === true,
     hijriEnabled: value.hijriEnabled !== false,
     hijriOffset,
     prayerEnabled: value.prayerEnabled === true,

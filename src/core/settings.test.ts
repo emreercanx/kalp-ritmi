@@ -64,6 +64,13 @@ describe("normalizeSettings", () => {
     expect(normalizeSettings({ cutoffHour: 2 }).cutoffHour).toBe(0);
   });
 
+  it("only enables startup board when explicitly requested", () => {
+    expect(DEFAULT_SETTINGS.openBoardOnStartup).toBe(false);
+    expect(normalizeSettings({}).openBoardOnStartup).toBe(false);
+    expect(normalizeSettings({ openBoardOnStartup: true }).openBoardOnStartup).toBe(true);
+    expect(normalizeSettings({ openBoardOnStartup: "true" }).openBoardOnStartup).toBe(false);
+  });
+
   it("keeps Hijri display on by default and clamps its offset", () => {
     expect(DEFAULT_SETTINGS.hijriEnabled).toBe(true);
     expect(normalizeSettings({}).hijriEnabled).toBe(true);

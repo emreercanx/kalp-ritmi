@@ -39,6 +39,7 @@ export class SettingsModal extends Modal {
   private cutoffHour: number;
   private habitDocFolder: string;
   private quickTodoPath: string;
+  private openBoardOnStartup: boolean;
   private hijriEnabled: boolean;
   private hijriOffset: number;
   private hijriRows: Setting[] = [];
@@ -69,6 +70,7 @@ export class SettingsModal extends Modal {
     this.cutoffHour = settings.cutoffHour;
     this.habitDocFolder = settings.habitDocFolder;
     this.quickTodoPath = settings.quickTodoPath;
+    this.openBoardOnStartup = settings.openBoardOnStartup;
     this.hijriEnabled = settings.hijriEnabled;
     this.hijriOffset = settings.hijriOffset;
     this.prayerEnabled = settings.prayerEnabled;
@@ -137,6 +139,19 @@ export class SettingsModal extends Modal {
         dropdown.setValue(String(this.cutoffHour));
         dropdown.onChange((value) => {
           this.cutoffHour = Number(value);
+        });
+      });
+
+    new Setting(contentEl)
+      .setName("Açılışta panoyu aç")
+      .setDesc(
+        "Obsidian açıldığında Kalp Ritmi panosunu öne getirir. " +
+          "Obsidian'ın varsayılan açılış dosyası arkada açık kalır.",
+      )
+      .addToggle((toggle) => {
+        toggle.setValue(this.openBoardOnStartup);
+        toggle.onChange((value) => {
+          this.openBoardOnStartup = value;
         });
       });
 
@@ -472,6 +487,7 @@ export class SettingsModal extends Modal {
         cutoffHour: this.cutoffHour,
         habitDocFolder: normalizeHabitDocFolder(this.habitDocFolder),
         quickTodoPath: normalizeQuickTodoPath(this.quickTodoPath),
+        openBoardOnStartup: this.openBoardOnStartup,
         hijriEnabled: this.hijriEnabled,
         hijriOffset: this.hijriOffset,
         prayerEnabled: this.prayerEnabled,
