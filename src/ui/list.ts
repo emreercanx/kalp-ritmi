@@ -61,6 +61,7 @@ export interface HabitListOptions {
   onSkip?: (habit: Habit, date: string, skipped: boolean) => Promise<void>;
   onQuickNote?: (habit: Habit) => void;
   onHabitDoc?: (habit: Habit) => void;
+  onHabitDocPreview?: (habit: Habit) => void;
   onCalendar: () => void;
   onSettings: () => void;
   onQuickTodo?: () => void;
@@ -487,17 +488,7 @@ function renderHabitRow(
   nameWrap.createDiv({ text: habit.name, cls: "ritim-name" });
   nameWrap.createDiv({ text: metaText(habit, cueName), cls: "ritim-name-meta" });
 
-  editArea.setAttr("role", "button");
-  editArea.setAttr("tabindex", "0");
-  editArea.setAttr("aria-label", `${habit.name} alışkanlığını düzenle`);
-  editArea.setAttr("title", "Düzenle");
-  editArea.onclick = () => options.onEdit(habit);
-  editArea.onkeydown = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      options.onEdit(habit);
-    }
-  };
+  bindNameOpen(editArea, habit, options);
 
   renderRowActions(nameCell, habit, options, true);
 
@@ -602,17 +593,7 @@ function renderPeriodHabitRow(
   nameWrap.createDiv({ text: habit.name, cls: "ritim-name" });
   nameWrap.createDiv({ text: metaText(habit), cls: "ritim-name-meta" });
 
-  editArea.setAttr("role", "button");
-  editArea.setAttr("tabindex", "0");
-  editArea.setAttr("aria-label", `${habit.name} alışkanlığını düzenle`);
-  editArea.setAttr("title", "Düzenle");
-  editArea.onclick = () => options.onEdit(habit);
-  editArea.onkeydown = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      options.onEdit(habit);
-    }
-  };
+  bindNameOpen(editArea, habit, options);
 
   renderRowActions(nameCell, habit, options, false);
 
@@ -628,6 +609,33 @@ function renderPeriodHabitRow(
       renderCheckCell(cell, habit, start, label, period.afterChange);
     }
   }
+}
+
+function bindNameOpen(
+  area: HTMLElement,
+  habit: Habit,
+  options: HabitListOptions,
+): void {
+  const open = (): void => {
+    if (options.onHabitDocPreview) options.onHabitDocPreview(habit);
+    else options.onEdit(habit);
+  };
+  area.setAttr("role", "button");
+  area.setAttr("tabindex", "0");
+  area.setAttr(
+    "aria-label",
+    options.onHabitDocPreview
+      ? `${habit.name} Markdown dosyasını önizle`
+      : `${habit.name} alışkanlığını düzenle`,
+  );
+  area.setAttr("title", options.onHabitDocPreview ? "Notu önizle" : "Düzenle");
+  area.onclick = open;
+  area.onkeydown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      open();
+    }
+  };
 }
 
 function renderRowActions(

@@ -33,6 +33,7 @@ import { RitimStore } from "./core/store";
 import { habitCadence, type Habit, type HabitCadence } from "./core/types";
 import { CalendarModal } from "./ui/calendar-modal";
 import { HabitDetailModal } from "./ui/habit-detail-modal";
+import { HabitDocModal } from "./ui/habit-doc-modal";
 import { ConfirmDeleteModal, HabitModal } from "./ui/habit-modal";
 import { HabitQuickNoteModal } from "./ui/habit-quick-note-modal";
 import { renderHabitList } from "./ui/list";
@@ -188,6 +189,7 @@ class RitimView extends ItemView {
       onSkip: (habit, date, skipped) => this.toggleSkip(habit, date, skipped),
       onQuickNote: (habit) => this.openQuickNote(habit),
       onHabitDoc: (habit) => void this.openHabitDoc(habit),
+      onHabitDocPreview: (habit) => void this.openHabitDocPreview(habit),
       onPeriodNavigate: (cadence, delta) => this.navigatePeriod(cadence, delta),
       onPeriodToday: (cadence) => this.resetPeriod(cadence),
       onCalendar: () => this.openCalendar(),
@@ -346,21 +348,24 @@ class RitimView extends ItemView {
     }
   }
 
-  private async openHabitDoc(habit: Habit): Promise<void> {
+  private async resolveHabitDoc(habit: Habit): Promise<string> {
     const store = this.store;
-    if (!store) return;
+    if (!store) throw new Error("Pano yüklenmedi.");
 
+    const path = await ensureHabitDoc(
+      this.app,
+      this.plugin.settings.habitDocFolder,
+      habit.name,
+      habit.docPath,
+    );
+    if (habit.docPath !== path) {
+      await store.updateHabit(habit, { docPath: path });
+    }
+    return path;
+  }
+
+  private async openResolvedHabitDoc(path: string): Promise<void> {
     try {
-      const path = await ensureHabitDoc(
-        this.app,
-        this.plugin.settings.habitDocFolder,
-        habit.name,
-        habit.docPath,
-      );
-      if (habit.docPath !== path) {
-        await store.updateHabit(habit, { docPath: path });
-      }
-
       const file = this.app.vault.getAbstractFileByPath(path);
       if (!(file instanceof TFile)) {
         throw new Error(`${path} bir dosya değil.`);
@@ -369,6 +374,30 @@ class RitimView extends ItemView {
       const leaf = this.app.workspace.getLeaf("tab");
       await leaf.openFile(file);
       await this.app.workspace.revealLeaf(leaf);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      new Notice(`Kalp Ritmi: Markdown dosyası açılamadı. ${message}`, 10000);
+    }
+  }
+
+  private async openHabitDoc(habit: Habit): Promise<void> {
+    try {
+      const path = await this.resolveHabitDoc(habit);
+      await this.openResolvedHabitDoc(path);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      new Notice(`Kalp Ritmi: Markdown dosyası açılamadı. ${message}`, 10000);
+    }
+  }
+
+  private async openHabitDocPreview(habit: Habit): Promise<void> {
+    try {
+      const path = await this.resolveHabitDoc(habit);
+      new HabitDocModal(this.app, {
+        habit,
+        path,
+        onOpenFile: () => void this.openResolvedHabitDoc(path),
+      }).open();
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       new Notice(`Kalp Ritmi: Markdown dosyası açılamadı. ${message}`, 10000);

@@ -6,9 +6,9 @@ Sade, çevrimdışı bir alışkanlık takipçisi. Obsidian içinde çalışır;
 
 Uygulama adı **Kalp Ritmi** oldu. Eklenti kimliği, görünüm kimliği ve `Ritim/` veri klasörü eski kayıtları korumak için değişmedi; mevcut veriler yerinde kalır.
 
-**1.6.5**, alışkanlık satırlarındaki gün atlama düğmesini kaldırır. Daha önce atlanmış günler `–` olarak görünmeye ve dokunarak geri alınmaya devam eder. "Açılışta panoyu aç" ayarı gecikmeli yüklenen eklentilerle (ör. Lazy Plugins) de çalışır; 122 çekirdek testi geçer.
+**1.6.6**, alışkanlık adına dokununca bağlı Markdown dosyasını açılır pencerede önizler. Pencerede `×` ile kapatma ve dosyayı düzenlemek için **Dosyayı aç** düğmesi vardır. Düzenleme için kalem düğmesi kullanılmaya devam eder; 122 çekirdek testi geçer.
 
-> Durum: **1.6.5.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
+> Durum: **1.6.6.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu ve açılır pencerede önizleme, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
 
 ## Kurulum (GitHub sürümü)
 
@@ -36,7 +36,7 @@ npm run build
 
 - Kalp Ritmi ana çalışma alanında tam genişlikte açılır. Açılırken sol ve sağ yan paneller kapanır; eski sürümden yan panelde kalmış bir Kalp Ritmi görünümü ilk açılışta kaldırılır. **Panoyu yeni sekmede aç** komutu ayrı bir ana sekme oluşturur. Ayarlardaki **Açılışta panoyu aç** ile Obsidian her açıldığında pano öne gelir; Obsidian'ın varsayılan açılış dosyası arkada açık kalır.
 - Başlıktaki `+` günlük alışkanlık ekler. **Haftalık alışkanlıklar** ve **Aylık alışkanlıklar** bölüm başlığındaki `+` ise o sıklıkta yeni alışkanlık ekler.
-- Bir alışkanlığın adına veya satırındaki kalem simgesine dokunarak düzenle.
+- Bir alışkanlığın adına dokunarak bağlı Markdown dosyasını açılır pencerede önizle; dosyayı düzenlemek için penceredeki **Dosyayı aç** düğmesini veya satırdaki kalem simgesini kullan.
 - Düzenleme ekranındaki **Sıklık** ile Günlük, Haftalık veya Aylık seç. Haftalık her hafta tek, aylık her ay tek kutuda işaretlenir; sayısal alışkanlıkta **hedef** dönem hedefi olur. Kayıtları olan bir alışkanlığın sıklığı değiştirilemez.
 - Haftalık ve aylık panolar yalnızca o sıklıktaki alışkanlıkları gösterir; günlük alışkanlıklar üstteki günlük panoda kalır.
 - Haftalık/aylık panolarda `‹` / `›` ve **Bugün** ile dönemler arasında gezin. Görünen hafta sayısı 2–8, ay sayısı 3–12 arasında ayarlanır; varsayılan ikisi de 4'tür.
