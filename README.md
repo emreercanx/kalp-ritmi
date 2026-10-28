@@ -6,9 +6,9 @@ Sade, çevrimdışı bir alışkanlık takipçisi. Obsidian içinde çalışır;
 
 Uygulama adı **Kalp Ritmi** oldu. Eklenti kimliği, görünüm kimliği ve `Ritim/` veri klasörü eski kayıtları korumak için değişmedi; mevcut veriler yerinde kalır.
 
-**1.6.3**, isteğe bağlı "Açılışta panoyu aç" ayarını ekler: Obsidian açıldığında Kalp Ritmi panosu öne gelir. Varsayılan olarak kapalıdır; 122 çekirdek testi geçer.
+**1.6.4**, "Açılışta panoyu aç" ayarının gecikmeli yüklenen eklentilerle (ör. Lazy Plugins) de çalışmasını sağlar: Obsidian açıldığında Kalp Ritmi panosu öne gelir. Varsayılan olarak kapalıdır; 122 çekirdek testi geçer.
 
-> Durum: **1.6.3.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, gün atlama, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
+> Durum: **1.6.4.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, gün atlama, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
 
 ## Kurulum (GitHub sürümü)
 

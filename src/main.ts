@@ -594,10 +594,9 @@ export default class RitimPlugin extends Plugin {
   async onload(): Promise<void> {
     await this.loadSettings();
     this.registerView(VIEW_TYPE_RITIM, (leaf) => new RitimView(leaf, this));
-    const isStartup = this.app.workspace.activeLeaf == null;
     this.app.workspace.onLayoutReady(() => {
       this.removeSidebarViews();
-      if (isStartup && this.settings.openBoardOnStartup) void this.activateView();
+      if (this.settings.openBoardOnStartup) void this.activateView();
     });
 
     this.addRibbonIcon("list-checks", "Kalp Ritmi: panoyu aç", () => {
