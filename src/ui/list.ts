@@ -57,7 +57,6 @@ export interface HabitListOptions {
   onHabitCalendar: (habit: Habit) => void;
   onHabitDetail: (habit: Habit) => void;
   onPeriodDetail?: (habit: Habit) => void;
-  onDelete?: (habit: Habit) => void;
   onSkip?: (habit: Habit, date: string, skipped: boolean) => Promise<void>;
   onQuickNote?: (habit: Habit) => void;
   onHabitDoc?: (habit: Habit) => void;
@@ -675,13 +674,10 @@ function renderRowActions(
       options.onHabitDoc?.(habit),
     );
   }
-  if (daily && options.onQuickNote) {
+  if (options.onQuickNote) {
     action("notebook-pen", "hızlı notlarını aç", "Hızlı notlar", () =>
       options.onQuickNote?.(habit),
     );
-  }
-  if (!daily && options.onDelete) {
-    action("trash-2", "alışkanlığını sil", "Sil", () => options.onDelete?.(habit));
   }
 }
 

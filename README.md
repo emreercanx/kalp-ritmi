@@ -6,9 +6,9 @@ Sade, çevrimdışı bir alışkanlık takipçisi. Obsidian içinde çalışır;
 
 Uygulama adı **Kalp Ritmi** oldu. Eklenti kimliği, görünüm kimliği ve `Ritim/` veri klasörü eski kayıtları korumak için değişmedi; mevcut veriler yerinde kalır.
 
-**1.6.6**, alışkanlık adına dokununca bağlı Markdown dosyasını açılır pencerede önizler. Pencerede `×` ile kapatma ve dosyayı düzenlemek için **Dosyayı aç** düğmesi vardır. Düzenleme için kalem düğmesi kullanılmaya devam eder; 122 çekirdek testi geçer.
+**1.6.7**, haftalık ve aylık satırlardaki sil düğmesini kaldırır; silme artık düzenleme penceresinin altındaki **Sil** düğmesindedir. Bu satırlara günlüklerdeki gibi **hızlı notlar** düğmesi eklenir. Düzenleme penceresinin alt düğmeleri kaydırırken görünür kalır; 122 çekirdek testi geçer.
 
-> Durum: **1.6.6.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu ve açılır pencerede önizleme, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
+> Durum: **1.6.7.** Kayıtlar kasada kalıcıdır; 3–14 günlük pano, alt alta haftalık ve aylık panolar, ayarlanabilir 2–8 hafta ve 3–12 ay, geçmişe gezinme, tarih seçici ve günlük/haftalık/aylık alışkanlık takvimleri, günlük/haftalık/aylık toplamlar, skor, haftalık hedefler, esnek gün seçimi, her N günde tekrar, mola aralığı, minimum sürüm, hızlı değer, alışkanlık zincirleme, gün bölümleri, perfect day, alışkanlık sıralama ve arşivleme, ayrıntılı istatistikler, 12 haftalık ısı haritası, alışkanlık başına Markdown notu ve açılır pencerede önizleme, alışkanlık başına hızlı notlar, hızlı yapılacaklar dosyası, alışkanlık ekleme/düzenleme/silme, pano ayarları, Hicri tarih, isteğe bağlı namaz vakitleri ve vakitlere dokunarak namaz işaretleme vardır.
 
 ## Kurulum (GitHub sürümü)
 
@@ -40,9 +40,9 @@ npm run build
 - Düzenleme ekranındaki **Sıklık** ile Günlük, Haftalık veya Aylık seç. Haftalık her hafta tek, aylık her ay tek kutuda işaretlenir; sayısal alışkanlıkta **hedef** dönem hedefi olur. Kayıtları olan bir alışkanlığın sıklığı değiştirilemez.
 - Haftalık ve aylık panolar yalnızca o sıklıktaki alışkanlıkları gösterir; günlük alışkanlıklar üstteki günlük panoda kalır.
 - Haftalık/aylık panolarda `‹` / `›` ve **Bugün** ile dönemler arasında gezin. Görünen hafta sayısı 2–8, ay sayısı 3–12 arasında ayarlanır; varsayılan ikisi de 4'tür.
-- Haftalık/aylık satırdaki **çöp kutusu** alışkanlığı onay sorduktan sonra panodan ve tanım dosyasından kaldırır; geçmiş log satırları dosyada kalır. Günlük alışkanlıklar düzenleme ekranındaki **Sil** ile kaldırılır.
+- Haftalık/aylık alışkanlıklar da düzenleme ekranının altındaki **Sil** ile onay sorduktan sonra panodan ve tanım dosyasından kaldırılır; geçmiş log satırları dosyada kalır.
 - Haftalık/aylık panolarda her sütun bir dönemdir. Tik alışkanlığında hücre o dönemin tek kaydıdır; sayısal alışkanlıkta dönem toplamı ve hedefi yazılır. Kayıt, dönemin başlangıç gününe yazılır.
-- Her alışkanlık satırının adının altında **takvim**, **düzenle**, **ayrıntı/skor** ve **Markdown notu** düğmeleri vardır; günlük satırlarda ayrıca **hızlı not**, haftalık/aylık satırlarda ayrıca **sil** bulunur. Gün sütunları bozulmadan hızlı erişim sağlar.
+- Her alışkanlık satırının adının altında **takvim**, **düzenle**, **ayrıntı/skor**, **Markdown notu** ve **hızlı not** düğmeleri vardır. Gün sütunları bozulmadan hızlı erişim sağlar.
 - Günlük satırındaki **defter** simgesi o alışkanlığın hızlı notlarını açar. Aynı alışkanlık için istediğin kadar not ekleyebilirsin; her notu ayrı ayrı düzenleyip silebilirsin. Notlar `.md` dosyası oluşturmaz; eklentinin `data.json` dosyasındaki yerel veride saklanır. `Ctrl+Enter` / `Cmd+Enter` yeni notu ekler.
 - Her alışkanlığa bir Markdown dosyası bağlanır. Düzenleme ekranındaki **Markdown dosyası > Dosya seç** ile mevcut bir `.md` dosyası seçebilirsin. Seçmezsen kaydederken `Ritim/alışkanlıklar/` içinde otomatik oluşturulur; aynı ad varsa sonuna `-2`, `-3` eklenir.
 - Alışkanlık satırındaki **Markdown notu** düğmesi bağlı dosyayı yeni sekmede açar. Dosya silinmişse aynı yolda yeniden oluşturulur. Mevcut alışkanlıkların dosyaları pano ilk açıldığında, yeni alışkanlıklarınki ise kaydedilirken oluşturulur.

@@ -480,6 +480,21 @@
   margin-top: 8px;
 }
 
+.ritim-habit-modal .modal-content {
+  max-height: min(78vh, 720px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.ritim-habit-modal .ritim-modal-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  padding: 10px 0 2px;
+  background: var(--background-primary);
+  border-top: 1px solid var(--background-modifier-border);
+}
+
 .ritim-habit-modal .ritim-muted,
 .ritim-settings-modal .ritim-muted {
   margin-bottom: 8px;

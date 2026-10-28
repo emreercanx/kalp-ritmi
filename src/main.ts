@@ -34,7 +34,7 @@ import { habitCadence, type Habit, type HabitCadence } from "./core/types";
 import { CalendarModal } from "./ui/calendar-modal";
 import { HabitDetailModal } from "./ui/habit-detail-modal";
 import { HabitDocModal } from "./ui/habit-doc-modal";
-import { ConfirmDeleteModal, HabitModal } from "./ui/habit-modal";
+import { HabitModal } from "./ui/habit-modal";
 import { HabitQuickNoteModal } from "./ui/habit-quick-note-modal";
 import { renderHabitList } from "./ui/list";
 import { PeriodCalendarModal } from "./ui/period-calendar-modal";
@@ -185,7 +185,6 @@ class RitimView extends ItemView {
       onHabitCalendar: (habit) => this.openHabitCalendar(habit),
       onHabitDetail: (habit) => this.openHabitDetail(habit),
       onPeriodDetail: (habit) => this.openPeriodDetail(habit),
-      onDelete: (habit) => this.openDeleteHabit(habit),
       onSkip: (habit, date, skipped) => this.toggleSkip(habit, date, skipped),
       onQuickNote: (habit) => this.openQuickNote(habit),
       onHabitDoc: (habit) => void this.openHabitDoc(habit),
@@ -429,14 +428,6 @@ class RitimView extends ItemView {
       onSave: async (notes) => {
         await this.plugin.setHabitNotes(habit.id, notes);
       },
-    }).open();
-  }
-
-  private openDeleteHabit(habit: Habit): void {
-    if (!this.store) return;
-
-    new ConfirmDeleteModal(this.app, habit.name, async () => {
-      await this.deleteHabit(habit);
     }).open();
   }
 
